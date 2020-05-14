@@ -5,13 +5,21 @@ var userClickedPattern = [];
 
 var level = 0;
 
-// start the game when user presses a key
+// start the game when user presses a key or clicks h1
 $(document).keydown(function(){
-    if (level === 0){
-        $("#level-title").text("Level " + level);
-        nextSequence();
-    };
+  startGame();
 });
+$("#level-title").click(function(){
+  startGame();
+});
+
+// game start conditions
+function startGame(){
+  if (level === 0){
+    $("#level-title").text("Level " + level);
+    nextSequence();
+  };
+}
 
 // update userClickedPattern with each button click
 // play sound, flash button, then compare answer to gamePattern
@@ -70,7 +78,7 @@ function checkAnswer(currentLevel){
 function gameOver(){
   playSound("wrong");
 
-  $("#level-title").text("Game Over, Press Any Key To Restart");
+  $("#level-title").text("Game Over, Press Any Key Or Click Here To Restart");
 
   $("body").addClass("game-over");
   setTimeout(function(){
